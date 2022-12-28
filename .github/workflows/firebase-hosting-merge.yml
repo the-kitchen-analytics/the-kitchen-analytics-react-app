@@ -2,7 +2,7 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
-'on':
+"on":
   push:
     branches:
       - master
@@ -14,7 +14,18 @@ jobs:
       - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_THE_KITCHEN_CALCULATOR }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_THE_KITCHEN_CALCULATOR }}"
           channelId: live
           projectId: the-kitchen-calculator
+        env:
+          REACT_APP_FIREBASE_API_KEY: "${{ secrets.REACT_APP_FIREBASE_API_KEY }}"
+          REACT_APP_FIREBASE_AUTH_DOMAIN: "${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }}"
+          REACT_APP_FIREBASE_PROJECT_ID: "${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}"
+          REACT_APP_FIREBASE_STORAGE_BUCKET: "${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }}"
+          REACT_APP_FIREBASE_STORAGE_MESSAGING_SENDER_ID: "${{ secrets.REACT_APP_FIREBASE_STORAGE_MESSAGING_SENDER_ID }}"
+          REACT_APP_FIREBASE_STORAGE_APP_ID: "${{ secrets.REACT_APP_FIREBASE_STORAGE_APP_ID }}"
+          REACT_APP_FIREBASE_MESUREMENT_ID: "${{ secrets.REACT_APP_FIREBASE_MESUREMENT_ID }}"
+          REACT_APP_FIREBASE_WEB_CLIENT_ID: "${{ secrets.REACT_APP_FIREBASE_WEB_CLIENT_ID }}"
+          REACT_APP_FIREBASE_WEB_CLIENT_SECRET: "${{ secrets.REACT_APP_FIREBASE_WEB_CLIENT_SECRET }}"
+          REACT_APP_VERSION: "1.0.0"
